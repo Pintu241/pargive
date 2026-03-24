@@ -75,4 +75,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: "Something went wrong!" });
 });
 
-export default app;
+// For Vercel serverless functions
+export default (req, res) => {
+  return app(req, res);
+};
