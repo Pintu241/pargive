@@ -1,5 +1,6 @@
 import "dotenv/config";
 import express from "express";
+import serverless from "serverless-http";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
@@ -75,7 +76,5 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: "Something went wrong!" });
 });
 
-// For Vercel serverless functions
-export default (req, res) => {
-  return app(req, res);
-};
+// Export for Vercel
+export default serverless(app);
