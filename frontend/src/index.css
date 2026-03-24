@@ -1,0 +1,108 @@
+/* ─── PARGIVE GLOBAL STYLES ──────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold:        #C9A84C;
+  --gold-light:  #E8C97A;
+  --gold-dim:    #8A6B2A;
+  --bg:          #0A0A08;
+  --bg2:         #111109;
+  --bg3:         #181814;
+  --text:        #F0EDE6;
+  --text2:       #9C9A8E;
+  --border:      rgba(201,168,76,0.15);
+  --green:       #1D9E75;
+  --red:         #E05555;
+}
+
+html, body, #root { height: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Grain overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.030;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+.disp { font-family: 'Cormorant Garamond', serif; }
+
+/* Animations */
+@keyframes fadeUp   { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn   { from { opacity:0; } to { opacity:1; } }
+@keyframes shimmer  { 0% { background-position:-200% center; } 100% { background-position:200% center; } }
+@keyframes spin     { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
+@keyframes ballPop  { 0% { transform:scale(0.6);opacity:0; } 70% { transform:scale(1.15); } 100% { transform:scale(1);opacity:1; } }
+@keyframes slideLeft{ from { opacity:0;transform:translateX(24px); } to { opacity:1;transform:translateX(0); } }
+@keyframes checkPop { 0% { transform:scale(0) rotate(-10deg);opacity:0; } 70% { transform:scale(1.18) rotate(2deg); } 100% { transform:scale(1) rotate(0deg);opacity:1; } }
+
+.fu  { animation: fadeUp   0.7s ease both; }
+.fi  { animation: fadeIn   0.5s ease both; }
+.sl  { animation: slideLeft 0.4s cubic-bezier(0.22,1,0.36,1) both; }
+
+.shimmer {
+  background: linear-gradient(90deg, var(--gold-dim) 0%, var(--gold-light) 40%, var(--gold-dim) 60%, var(--gold-light) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Form elements */
+input, select, textarea {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  padding: 12px 16px;
+  width: 100%;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: rgba(201,168,76,0.5);
+  box-shadow: 0 0 0 3px rgba(201,168,76,0.07);
+}
+input::placeholder { color: var(--text2); font-weight: 300; }
+input.err { border-color: rgba(224,85,85,0.55); }
+select option { background: var(--bg3); }
+textarea { resize: vertical; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.2); border-radius: 2px; }
+
+/* Table */
+table { width: 100%; border-collapse: collapse; }
+th {
+  font-size: 10px; letter-spacing: 0.12em; color: var(--text2);
+  text-align: left; padding: 10px 14px;
+  border-bottom: 1px solid var(--border); font-weight: 500;
+}
+td { font-size: 13px; color: var(--text); padding: 12px 14px; border-bottom: 1px solid rgba(201,168,76,0.07); }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(201,168,76,0.03); }
+
+/* Responsive helpers */
+@media (max-width: 768px) {
+  .hide-mobile { display: none !important; }
+  .stack-mobile { flex-direction: column !important; }
+  .full-mobile  { width: 100% !important; grid-template-columns: 1fr !important; }
+}
