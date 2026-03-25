@@ -96,8 +96,12 @@ app.use((err, req, res, next) => {
 });
 
 // ─── START ────────────────────────────────────────────────────────────────────
-app.listen(PORT, () => {
-  console.log(`ParGive API running on port ${PORT} [${process.env.NODE_ENV || "development"}]`);
-});
+import serverless from "serverless-http";
 
-export default app;
+if (process.env.NODE_ENV !== "production") {
+  app.listen(PORT, () => {
+    console.log(`ParGive API running on port ${PORT} [${process.env.NODE_ENV || "development"}]`);
+  });
+}
+
+export default serverless(app);
