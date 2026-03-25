@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "main": "api/index.js",
+  "main": "backend/api/index.js",
   "scripts": {
     "build": "echo 'API only - no build required'",
-    "start": "node api/index.js"
+    "start": "node backend/api/index.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.39.7",

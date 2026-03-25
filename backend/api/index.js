@@ -6,13 +6,13 @@ import helmet from "helmet";
 import morgan from "morgan";
 import rateLimit from "express-rate-limit";
 
-import authRoutes          from "../backend/src/routes/auth.js";
-import subscriptionRoutes  from "../backend/src/routes/subscriptions.js";
-import scoreRoutes         from "../backend/src/routes/scores.js";
-import userRoutes          from "../backend/src/routes/users.js";
-import drawRoutes          from "../backend/src/routes/draws.js";
-import donationRoutes      from "../backend/src/routes/donations.js";
-import adminRoutes         from "../backend/src/routes/admin.js";
+import authRoutes          from "../src/routes/auth.js";
+import subscriptionRoutes  from "../src/routes/subscriptions.js";
+import scoreRoutes         from "../src/routes/scores.js";
+import userRoutes          from "../src/routes/users.js";
+import drawRoutes          from "../src/routes/draws.js";
+import donationRoutes      from "../src/routes/donations.js";
+import adminRoutes         from "../src/routes/admin.js";
 
 const app = express();
 
