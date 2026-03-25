@@ -2,6 +2,7 @@
   "name": "pargive-backend",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "main": "api/index.js",
   "scripts": {
     "build": "echo 'API only - no build required'",

@@ -4,6 +4,7 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import rateLimit from "express-rate-limit";
+import supabase from "./lib/supabase.js";
 
 import authRoutes          from "./routes/auth.js";
 import subscriptionRoutes  from "./routes/subscriptions.js";
@@ -68,7 +69,16 @@ app.use("/api/donations",     donationRoutes);
 app.use("/api/admin",         adminRoutes);
 
 // ─── HEALTH CHECK ─────────────────────────────────────────────────────────────
-app.get("/health", (_, res) => res.json({ status: "ok", env: process.env.NODE_ENV }));
+app.get("/health", async (_, res) => {
+  try {
+    const { error } = await supabase.from("users").select("id").limit(1);
+    if (error) throw error;
+    res.json({ status: "ok", supabase: "connected", env: process.env.NODE_ENV });
+  } catch (err) {
+    res.status(500).json({ status: "ok", supabase: "FAILED", error: err.message });
+  }
+});
+
 
 // ─── 404 ──────────────────────────────────────────────────────────────────────
 app.use((req, res) => {
