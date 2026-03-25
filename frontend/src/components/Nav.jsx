@@ -67,6 +67,7 @@ export default function Nav() {
             ))
           : !isAdmin && NAV_LINKS.map(l => (
               <span key={l.label}
+                onClick={() => navigate(l.href)}
                 style={{ cursor: "pointer", letterSpacing: "0.06em", transition: "color 0.2s" }}
                 onMouseEnter={e => e.target.style.color = gold}
                 onMouseLeave={e => e.target.style.color = text2}
