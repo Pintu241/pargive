@@ -85,9 +85,17 @@ export default function Nav() {
               border: "1px solid var(--border)",
               display: "flex", alignItems: "center", justifyContent: "center",
               fontSize: 12, color: gold, cursor: "pointer", fontWeight: 500,
-            }}>
+            }}
+            onClick={() => navigate("/dashboard/account")}
+            >
               {user.name?.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase()}
             </div>
+            <span
+              onClick={() => navigate("/dashboard/account")}
+              style={{ fontSize: 12, color: text2, cursor: "pointer", letterSpacing: "0.08em", transition: "color 0.2s", marginRight: 14 }}
+              onMouseEnter={e => e.target.style.color = gold}
+              onMouseLeave={e => e.target.style.color = text2}
+            >CHANGE PASSWORD</span>
             <span
               onClick={logout}
               style={{ fontSize: 12, color: text2, cursor: "pointer", letterSpacing: "0.08em", transition: "color 0.2s" }}
